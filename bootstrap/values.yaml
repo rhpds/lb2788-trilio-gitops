@@ -2,9 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+username: user1
+
 user:
   count: 2
-  prefix: user
+  prefix: dr-admin
 
 deployer:
   domain: apps.cluster-guid.sandbox.opentlc.com
@@ -12,6 +14,46 @@ deployer:
 
 workspace:
   git:
-    url: https://github.com/rhpds/ci-template-gitops.git
+    url: https://github.com/rhpds/lb2788-trilio-gitops.git
     revision: main
     path: workspace
+
+vms:
+  git:
+    url: https://github.com/rhpds/lb2788-trilio-gitops.git
+    revision: main
+    path: vms
+  count: 1
+  namespace: originalvms
+  runStrategy: "RerunOnFailure"
+  evictionStrategy: "None"
+  machineType: q35
+
+
+datavolumes:
+  git:
+    url: https://github.com/rhpds/lb2788-trilio-gitops.git
+    revision: main
+    path: datavolumes
+  namespace: default
+  imageUrl: "http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt"
+  volumes:
+  - object_name: demo-database-centos7-20250408.qcow2
+    volume_name: database
+    size: 16Gi
+    volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
+  - object_name: demo-winweb01-w2k22-20250408.qcow2
+    volume_name: winweb01
+    size: 90Gi
+    volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
+  - object_name: demo-winweb02-w2k22-20250408.qcow2
+    volume_name: winweb02
+    size: 90Gi
+    volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
+
+trilio_rbac:
+  git:
+    url: https://github.com/rhpds/lb2788-trilio-gitops.git
+    revision: main
+    path: trilio_rbac
+  namespace: vms

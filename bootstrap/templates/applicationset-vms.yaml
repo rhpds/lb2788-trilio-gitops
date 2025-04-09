@@ -1,0 +1,35 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: vms
+  namespace: openshift-gitops
+spec:
+  generators:
+  - list:
+      elements:
+{{- $userCount := int .Values.user.count }}
+{{- range $index := until $userCount }}
+      - user: {{ $.Values.user.prefix }}{{ add $index 1}}
+{{- end }}
+  template:
+    metadata:
+      name: vms-{{- "{{" }} user {{- " }}" }}
+      namespace: openshift-gitops
+    spec:
+      project: default
+      source:
+        repoURL: {{ .Values.vms.git.url }}
+        targetRevision: {{ .Values.vms.git.revision }}
+        path: {{ .Values.vms.git.path }}
+        helm:
+          values: |
+            username: '{{- "{{" }} user {{- " }}" }}'
+            vms:
+              count: {{ .Values.vms.count }}
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false

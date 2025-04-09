@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: trilio-rbac
+  namespace: openshift-gitops
+spec:
+  generators:
+  - list:
+      elements:
+{{- $userCount := int .Values.user.count }}
+{{- range $index := until $userCount }}
+      - user: {{ $.Values.user.prefix }}{{ add $index 1}}
+{{- end }}
+  template:
+    metadata:
+      name: vms-{{- "{{" }} user {{- " }}" }}
+      namespace: openshift-gitops
+    spec:
+      project: default
+      source:
+        repoURL: {{ .Values.trilio_rbac.git.url }}
+        targetRevision: {{ .Values.trilio_rbac.git.revision }}
+        path: {{ .Values.trilio_rbac.git.path }}
+        helm:
+          values: |
+            username: '{{- "{{" }} user {{- " }}" }}'
+            namespace: {{ .Values.trilio_rbac.namespace }}
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false

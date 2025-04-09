@@ -1,0 +1,18 @@
+# Default values for vms.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deployer:
+  domain: REPLACEME-OPENSHIFT_DOMAIN
+  apiUrl: https://api.cluster.opentlc.com:6443
+
+ingressgatway_url_path: https://localhost
+
+vms:
+  count: 1
+  namespace: vms
+  runStrategy: "RerunOnFailure"
+  evictionStrategy: "None"
+  machineType: q35
+
+username: user1
