@@ -49,7 +49,7 @@ metadata:
   labels:
     app: database
     app.kubernetes.io/part-of: 3-Tier-App
-  name: database-{{ $vm_index }}
+  name: database
   namespace: {{ $.Values.vms.namespace }}-{{ $.Values.username }}
 spec:
   dataVolumeTemplates:
@@ -131,7 +131,7 @@ metadata:
     app.kubernetes.io/part-of: 3-Tier-App
     vm.kubevirt.io/template.revision: '1'
     vm.kubevirt.io/template.version: v0.25.0
-  name: winweb01-{{ $vm_index }}
+  name: winweb01
   namespace: {{ $.Values.vms.namespace }}-{{ $.Values.username }}
 spec:
   dataVolumeTemplates:
@@ -237,7 +237,7 @@ metadata:
     app.kubernetes.io/part-of: 3-Tier-App
     vm.kubevirt.io/template.revision: '1'
     vm.kubevirt.io/template.version: v0.25.0
-  name: winweb02-{{ $vm_index }}
+  name: winweb02
   namespace: {{ $.Values.vms.namespace }}-{{ $.Values.username }}
 spec:
   dataVolumeTemplates:
