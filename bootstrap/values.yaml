@@ -25,7 +25,7 @@ vms:
     path: vms
   count: 1
   namespace: originalvms
-  runStrategy: "RerunOnFailure"
+  runStrategy: "Manual"
   evictionStrategy: "None"
   machineType: q35
 

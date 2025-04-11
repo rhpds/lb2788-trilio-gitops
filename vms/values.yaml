@@ -11,7 +11,7 @@ ingressgatway_url_path: https://localhost
 vms:
   count: 1
   namespace: vms
-  runStrategy: "RerunOnFailure"
+  runStrategy: "Manual"
   evictionStrategy: "None"
   machineType: q35
 
