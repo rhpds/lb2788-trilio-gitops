@@ -3,7 +3,7 @@ apiVersion: triliovault.trilio.io/v1
 kind: BackupPlan
 metadata:
   # name: originalvms-dr-admin4-backupplan-352
-  name: {{ .Values.username }}-{{ .Values.username }}-backupplan-a
+  name: {{ .Values.namespace }}-{{ .Values.username }}-backupplan-a
   namespace: {{ .Values.namespace }}-{{ .Values.username }}
 spec:
   backupConfig:
