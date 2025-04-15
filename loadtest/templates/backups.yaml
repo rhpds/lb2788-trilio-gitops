@@ -3,6 +3,8 @@
 apiVersion: triliovault.trilio.io/v1
 kind: BackupPlan
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
   # name: originalvms-dr-admin4-backupplan-352
   name: backupplan-a-{{ .Values.username }}
   namespace: {{ .Values.namespace }}-{{ .Values.username }}
@@ -26,6 +28,8 @@ spec:
 apiVersion: triliovault.trilio.io/v1
 kind: Backup
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
   name: backup1-{{ .Values.username }}
   namespace: {{ .Values.namespace }}-{{ .Values.username }}
 spec:
