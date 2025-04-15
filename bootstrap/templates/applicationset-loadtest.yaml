@@ -28,7 +28,7 @@ spec:
             username: '{{- "{{" }} user {{- " }}" }}'
             common_password: {{ .Values.common_password }}
       destination:
-        server: https://kubernetes.default.svc
+      #  server: https://kubernetes.default.svc
       syncPolicy:
         automated:
           prune: false
