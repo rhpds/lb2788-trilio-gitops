@@ -1,0 +1,13 @@
+---
+apiVersion: triliovault.trilio.io/v1
+kind: Backup
+metadata:
+  name: backup1-{{ .Values.username }}
+  namespace: {{ .Values.namespace }}-{{ .Values.username }}
+spec:
+  backupPlan:
+    apiVersion: triliovault.trilio.io/v1
+    kind: BackupPlan
+    # name: originalvms-dr-admin4-backupplan-352
+    namespace: {{ .Values.namespace }}-{{ .Values.username }}
+  type: Full
