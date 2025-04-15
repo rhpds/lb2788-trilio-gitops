@@ -1,3 +1,4 @@
+---
 apiVersion: triliovault.trilio.io/v1
 kind: Target
 metadata:
