@@ -131,10 +131,10 @@ spec:
         machine:
           type: {{ $.Values.vms.machineType }}
         memory:
-          guest: 1Gi
+          guest: 2Gi
         resources:
           requests:
-            memory: 1Gi
+            memory: 2Gi
       evictionStrategy: {{ $.Values.vms.evictionStrategy }}
       networks:
       - name: default
