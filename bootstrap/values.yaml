@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 
 username: user1
+common_password: password
 
 user:
   count: 2
@@ -57,3 +58,11 @@ trilio_rbac:
     revision: main
     path: trilio_rbac
   namespace: vms
+
+loadtest:
+  git:
+    url: https://github.com/rhpds/lb2788-trilio-gitops.git
+    revision: main
+    path: loadtest
+  namespace: originalvms
+  enable: true
