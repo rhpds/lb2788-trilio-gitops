@@ -1,4 +1,4 @@
-{{- if .Values.backend.minio "true" }}
+{{- if eq .Values.backend.minio "true" }}
 ---
 apiVersion: triliovault.trilio.io/v1
 kind: Target
@@ -20,7 +20,7 @@ spec:
   type: ObjectStore
   vendor: MinIO
 {{- end }}
-{{- if .Values.backend.odf "true" }}
+{{- if eq .Values.backend.odf "true" }}
 ---
 apiVersion: batch/v1
 kind: Job
