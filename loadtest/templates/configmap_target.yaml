@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: trilio-target
+  namespace: {{ .Values.namespace }}-{{ .Values.username }}
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+data:
+  target.yaml: |
+    ---
+    apiVersion: triliovault.trilio.io/v1
+    kind: Target
+    metadata:
+      name: odf-target-s3-{{ .Values.username }}
+      namespace: {{ .Values.namespace }}-{{ .Values.username }}
+    spec:
+      nfsCredentials:
+        nfsExport: ''
+      objectStoreCredentials:
+        skipCertVerification: true
+        bucketName: ${BUCKET_NAME}
+        url: 'https://s3.openshift-storage.svc:443'
+        credentialSecret:
+          apiVersion: v1
+          kind: Secret
+          name: trilio-odf-s3
+          namespace: {{ .Values.namespace }}-{{ .Values.username }}
+      type: ObjectStore
+      vendor: Other

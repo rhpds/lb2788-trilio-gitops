@@ -42,3 +42,32 @@ spec:
   type: ObjectStore
   vendor: MinIO
 {{- end }}
+{{- if .Values.backend.odf }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: odf-target-job-{{ .Values.username }}
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: odf-secret-job
+      containers:
+      - name: odf-secret-patch-{{ .Values.username }}
+        image: registry.redhat.io/openshift4/ose-cli:latest
+        # image: quay.io/agnosticd/ee-multicloud:v0.1.2
+        command:
+        - /bin/sh
+        - -c
+        - |
+
+          BUCKET_NAME=$(oc get -n default secret trilio-bucket-odf -o jsonpath='{.data.AWS_ACCESS_KEY_ID}' | base64 -d)
+
+          oc create -n {{ .Values.namespace }}-{{ .Values.username }} secret generic trilio-odf-s3 \
+          --from-literal=accessKey="${ACCESS_KEY}" \
+          --from-literal=secretKey="${SECRET_KEY}" \
+{{- end }}
