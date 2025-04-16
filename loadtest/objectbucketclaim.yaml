@@ -1,0 +1,71 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: trilio-bucket-odf
+  namespace: default
+  labels:
+    app: noobaa
+    bucket-provisioner: openshift-storage.noobaa.io-obc
+    noobaa-domain: openshift-storage.noobaa.io
+spec:
+  additionalConfig:
+    bucketclass: noobaa-default-bucket-class
+  bucketName: trilio-bucket-odf-cd42f5d9-833e-424a-a8de-98b3cd55937d
+  generateBucketName: trilio-bucket-odf
+  objectBucketName: obc-default-trilio-bucket-odf
+  storageClassName: openshift-storage.noobaa.io
+status:
+  phase: Bound
+
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: trilio-bucket-odf
+  namespace: default
+  ownerReferences:
+    - apiVersion: objectbucket.io/v1alpha1
+      kind: ObjectBucketClaim
+      name: trilio-bucket-odf
+      uid: 92e0b0bc-c121-4924-b9bd-bdd0f6f4bbb1
+      controller: true
+      blockOwnerDeletion: true
+  finalizers:
+    - objectbucket.io/finalizer
+  labels:
+    app: noobaa
+    bucket-provisioner: openshift-storage.noobaa.io-obc
+    noobaa-domain: openshift-storage.noobaa.io
+data:
+  AWS_ACCESS_KEY_ID: eEkwM0pORzdSa2FLQzJkTTBzNVo=
+  AWS_SECRET_ACCESS_KEY: aHk3emxyeGttVjFhcStLOEQySjl1T0ZGdndwMC81S2U5K0lUWlptNg==
+
+---
+  Endpoint
+s3.openshift-storage.svc:443
+Bucket Name
+trilio-bucket-odf-cd42f5d9-833e-424a-a8de-98b3cd55937d
+Access Key
+xI03JNG7RkaKC2dM0s5Z
+Secret Key
+hy7zlrxkmV1aq+K8D2J9uOFFvwp0/5Ke9+ITZZm6
+----
+
+Good Target:
+
+spec:
+  nfsCredentials:
+    nfsExport: ''
+  objectStoreCredentials:
+    bucketName: trilio-bucket-odf-cd42f5d9-833e-424a-a8de-98b3cd55937d
+    credentialSecret:
+      apiVersion: v1
+      kind: Secret
+      name: trilio-odf-bucket-secret
+      namespace: default
+      resourceVersion: '865581'
+      uid: 3d9b0482-425b-49cf-b65d-c1deb0d09ce6
+    skipCertVerification: true
+    url: 'https://s3.openshift-storage.svc:443'
+  type: ObjectStore
+  vendor: Other

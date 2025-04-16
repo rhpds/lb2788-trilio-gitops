@@ -52,6 +52,15 @@ datavolumes:
     size: 90Gi
     volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
 
+odf_config:
+  git:
+    url: https://github.com/rhpds/lb2788-trilio-gitops.git
+    revision: main
+    path: odf_config
+  backend:
+    minio: false
+    odf: true
+
 trilio_rbac:
   git:
     url: https://github.com/rhpds/lb2788-trilio-gitops.git
@@ -66,3 +75,6 @@ loadtest:
     path: loadtest
   namespace: originalvms
   enable: false
+  backend:
+    minio: false
+    odf: true

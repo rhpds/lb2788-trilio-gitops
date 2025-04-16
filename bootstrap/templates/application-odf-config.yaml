@@ -1,0 +1,20 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: odf-config
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.odf_config.git.url }}
+    targetRevision: {{ .Values.odf_config.git.revision }}
+    path: {{ .Values.odf_config.git.path }}
+    helm:
+      values: |
+        odf_config:
+          imageUrl: {{ .Values.odf_config.imageUrl }}
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
