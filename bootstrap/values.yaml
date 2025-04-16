@@ -65,4 +65,4 @@ loadtest:
     revision: main
     path: loadtest
   namespace: originalvms
-  enable: true
+  enable: false
