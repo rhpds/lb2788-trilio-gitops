@@ -42,7 +42,7 @@ spec:
         - -c
         - |
 
-          BUCKET_NAME=$(oc get -n default secret trilio-bucket-odf -o jsonpath='{.data.AWS_ACCESS_KEY_ID}' | base64 -d)
+          BUCKET_NAME=$(oc get -n default obc trilio-bucket-odf -o jsonpath='{.spec.bucketName}')
 
           cat << EOF | oc apply -f -
           apiVersion: triliovault.trilio.io/v1
