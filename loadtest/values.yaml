@@ -12,5 +12,5 @@ username: dr-admin1
 common_password: password
 namespace: originalvms
 backend:
-  minio: false
-  odf: true
+  minio: "false"
+  odf: "true"
