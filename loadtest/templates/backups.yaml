@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5"
   # name: originalvms-dr-admin4-backupplan-352
-  name: backupplan-a-{{ .Values.username }}
+  name: backupplan-s3-{{ .Values.username }}
   namespace: {{ .Values.namespace }}-{{ .Values.username }}
 spec:
   backupConfig:
@@ -14,7 +14,7 @@ spec:
     target:
       apiVersion: triliovault.trilio.io/v1
       kind: Target
-      name: target-1-{{ .Values.username }}
+      name: odf-target-s3-{{ .Values.username }}
       namespace: {{ .Values.namespace }}-{{ .Values.username }}
   backupPlanComponents: {}
   snapshotConfig:
@@ -22,7 +22,7 @@ spec:
     target:
       apiVersion: triliovault.trilio.io/v1
       kind: Target
-      name: target-1-{{ .Values.username }}
+      name: odf-target-s3-{{ .Values.username }}
       namespace: {{ .Values.namespace }}-{{ .Values.username }}
 ---
 apiVersion: triliovault.trilio.io/v1
@@ -30,13 +30,13 @@ kind: Backup
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "6"
-  name: backup1-{{ .Values.username }}
+  name: backup-s3-{{ .Values.username }}
   namespace: {{ .Values.namespace }}-{{ .Values.username }}
 spec:
   backupPlan:
     apiVersion: triliovault.trilio.io/v1
     kind: BackupPlan
     # name: originalvms-dr-admin4-backupplan-352
-    name: backupplan-a-{{ .Values.username }}
+    name: backupplan-s3-{{ .Values.username }}
     namespace: {{ .Values.namespace }}-{{ .Values.username }}
   type: Full
