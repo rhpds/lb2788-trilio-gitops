@@ -1,4 +1,4 @@
-{{- if .Values.backend.minio }}
+{{- if .Values.backend.minio "true" }}
 ---
 apiVersion: triliovault.trilio.io/v1
 kind: Target
@@ -20,29 +20,7 @@ spec:
   type: ObjectStore
   vendor: MinIO
 {{- end }}
-{{- if .Values.backend.odf }}
----
-apiVersion: triliovault.trilio.io/v1
-kind: Target
-metadata:
-  name: odf-target-1-{{ .Values.username }}
-  namespace: {{ .Values.namespace }}-{{ .Values.username }}
-spec:
-  nfsCredentials:
-    nfsExport: ''
-  objectStoreCredentials:
-    skipCertVerification: true
-    bucketName: odf-trilio-b0c08db9-436c-430f-9eeb-8d5334e109b9s3
-    url: 'https://s3.openshift-storage.svc:443'
-    credentialSecret:
-      apiVersion: v1
-      kind: Secret
-      name: odf-s3-login
-      namespace: {{ .Values.namespace }}-{{ .Values.username }}
-  type: ObjectStore
-  vendor: MinIO
-{{- end }}
-{{- if .Values.backend.odf }}
+{{- if .Values.backend.odf "true" }}
 ---
 apiVersion: batch/v1
 kind: Job
