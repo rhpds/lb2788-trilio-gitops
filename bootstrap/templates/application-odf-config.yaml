@@ -13,8 +13,6 @@ spec:
     helm:
       values: |
         odf_config:
-          imageUrl: {{ .Values.odf_config.imageUrl }}
+          backend: {{ .Values.odf_config.backend }}
   destination:
     server: https://kubernetes.default.svc
-  syncPolicy:
-    automated: {}

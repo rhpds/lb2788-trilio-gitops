@@ -1,0 +1,11 @@
+{{- if .Values.backend.odf }}
+---
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: trilio-bucket-odf
+  namespace: default
+spec:
+  generateBucketName: trilio-bucket-odf
+  storageClassName: openshift-storage.noobaa.io
+{{- end }}
