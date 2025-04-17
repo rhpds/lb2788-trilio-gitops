@@ -32,7 +32,7 @@ spec:
       syncPolicy:
         retry:
           limit: 5
-      #   automated:
+        automated: {}
       #     prune: false
       #     selfHeal: false
 {{- end }}
