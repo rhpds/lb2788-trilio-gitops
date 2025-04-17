@@ -3,8 +3,8 @@
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
-  name: trilio-bucket-odf
-  namespace: default
+  name: obc-trilio-bucket-odf
+  namespace: {{ .Values.namespace }}-{{ .Values.username }}
 spec:
   generateBucketName: trilio-bucket-odf
   storageClassName: openshift-storage.noobaa.io

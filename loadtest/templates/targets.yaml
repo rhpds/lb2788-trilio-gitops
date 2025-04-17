@@ -48,7 +48,7 @@ spec:
           apiVersion: triliovault.trilio.io/v1
           kind: Target
           metadata:
-            name: odf-target-s3-{{ .Values.username }}
+            name: target-odf-s3-{{ .Values.username }}
             namespace: {{ .Values.namespace }}-{{ .Values.username }}
           spec:
             nfsCredentials:
@@ -60,7 +60,7 @@ spec:
               credentialSecret:
                 apiVersion: v1
                 kind: Secret
-                name: trilio-odf-s3
+                name: target-trilio-odf-s3
                 namespace: {{ .Values.namespace }}-{{ .Values.username }}
             type: ObjectStore
             vendor: Other
