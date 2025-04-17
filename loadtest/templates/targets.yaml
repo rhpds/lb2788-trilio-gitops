@@ -42,14 +42,15 @@ spec:
         - -c
         - |
 
-          BUCKET_NAME=$(oc get -n default obc trilio-bucket-odf -o jsonpath='{.spec.bucketName}')
+          NAMESPACE={{ .Values.namespace }}-{{ .Values.username }}
+          BUCKET_NAME=$(oc get -n $NAMESPACE obc trilio-bucket-odf -o jsonpath='{.spec.bucketName}')
 
           cat << EOF | oc apply -f -
           apiVersion: triliovault.trilio.io/v1
           kind: Target
           metadata:
             name: target-odf-s3-{{ .Values.username }}
-            namespace: {{ .Values.namespace }}-{{ .Values.username }}
+            namespace: $NAMESPACE
           spec:
             nfsCredentials:
               nfsExport: ''
@@ -61,7 +62,7 @@ spec:
                 apiVersion: v1
                 kind: Secret
                 name: target-trilio-odf-s3
-                namespace: {{ .Values.namespace }}-{{ .Values.username }}
+                namespace: $NAMESPACE
             type: ObjectStore
             vendor: Other
           EOF
