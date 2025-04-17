@@ -12,7 +12,7 @@ vms:
   count: 1
   namespace: vms
   runStrategy: "RerunOnFailure"
-  evictionStrategy: "None"
+  evictionStrategy: "LiveMigrate"
   machineType: q35
 
 username: user1

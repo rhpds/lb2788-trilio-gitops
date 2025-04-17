@@ -27,7 +27,7 @@ vms:
   count: 1
   namespace: originalvms
   runStrategy: "Manual"
-  evictionStrategy: "None"
+  evictionStrategy: "LiveMigrate"
   machineType: q35
 
 
