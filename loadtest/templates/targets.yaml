@@ -43,7 +43,7 @@ spec:
         - |
 
           NAMESPACE={{ .Values.namespace }}-{{ .Values.username }}
-          BUCKET_NAME=$(oc get -n $NAMESPACE obc trilio-bucket-odf -o jsonpath='{.spec.bucketName}')
+          BUCKET_NAME=$(oc get -n $NAMESPACE obc obc-trilio-bucket-odf -o jsonpath='{.spec.bucketName}')
 
           cat << EOF | oc apply -f -
           apiVersion: triliovault.trilio.io/v1
