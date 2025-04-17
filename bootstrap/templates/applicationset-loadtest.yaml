@@ -29,7 +29,9 @@ spec:
             common_password: {{ .Values.common_password }}
       destination:
         server: https://kubernetes.default.svc
-      # syncPolicy:
+      syncPolicy:
+        retry:
+          limit: 5
       #   automated:
       #     prune: false
       #     selfHeal: false
