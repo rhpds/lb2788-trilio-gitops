@@ -21,4 +21,3 @@ spec:
         - |
           set -euxo pipefail
           oc patch BackingStore noobaa-default-backing-store -n openshift-storage --type merge  --patch '{"spec":{"pvPool":{"resources":{"limits":{"memory":"1G","cpu":1}}}}}'
-{{- end }}
