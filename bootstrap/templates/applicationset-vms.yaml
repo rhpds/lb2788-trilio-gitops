@@ -27,7 +27,7 @@ spec:
             username: '{{- "{{" }} user {{- " }}" }}'
             vms:
               count: {{ .Values.vms.count }}
-              namespace: {{ .Values.vms.namespace }}{{ if ne $.Values.user.count "1" }}-{{- "{{" }} user {{- " }}" }}{{ end }}
+              namespace: {{ .Values.vms.namespace }}{{ if ne (int $.Values.user.count) 1 }}-{{- "{{" }} user {{- " }}" }}{{ end }}
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
