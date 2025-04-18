@@ -6,7 +6,7 @@ username: user1
 common_password: password
 
 user:
-  count: 2
+  count: 1
   prefix: dr-admin
 
 deployer:
@@ -39,14 +39,14 @@ datavolumes:
   namespace: default
   imageUrl: "http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt"
   volumes:
-  - object_name: demo-database-centos7-20250408.qcow2
-    volume_name: database
-    size: 16Gi
-    volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
-  # - object_name: demo-winweb01-w2k22-20250410.qcow2
-  #   volume_name: winweb01
-  #   size: 90Gi
+  # - object_name: demo-database-centos7-20250408.qcow2
+  #   volume_name: database
+  #   size: 16Gi
   #   volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
+  - object_name: demo-winweb01-w2k22-20250410.qcow2
+    volume_name: winweb01
+    size: 90Gi
+    volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
   # - object_name: demo-winweb02-w2k22-20250410.qcow2
   #   volume_name: winweb02
   #   size: 90Gi
