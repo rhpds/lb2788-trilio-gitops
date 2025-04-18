@@ -38,6 +38,71 @@ subjects:
   name: admin
 {{- $max_vms := ( add ( int .count ) 1 ) }}
 {{- range $vm_index := untilStep 1 ( int $max_vms ) 1 }}
+{{- if eq $.Values.linux "true" }}
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: linux-vm
+  namespace: {{ $.Values.namespace }}-{{ $.Values.username }}
+  labels:
+    app.kubernetes.io/name: linux-vm
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  instancetype:
+    name: u1.small
+  preference:
+    name: rhel.9
+  runStrategy: Always
+  template:
+    metadata:
+      labels:
+        network.kubevirt.io/headlessService: headless
+    spec:
+      domain:
+        devices:
+          autoattachPodInterface: false
+          interfaces:
+          - name: default
+            masquerade: {}
+      networks:
+        - name: default
+          pod: {}
+      subdomain: headless
+      volumes:
+      - name: rootdisk
+        dataVolume:
+          name: linux-vm
+      - name: cloudinitdisk
+        cloudInitNoCloud:
+          userData: |-
+            #cloud-config
+            user: rhel
+            password: openshift
+            chpasswd:
+              expire: false
+            ssh_pwauth: true
+      accessCredentials:
+      - sshPublicKey:
+          propagationMethod:
+            noCloud: {}
+          source:
+            secret:
+              secretName: linux-vm
+  dataVolumeTemplates:
+  - metadata:
+      name: linux-vm
+    spec:
+      sourceRef:
+        kind: DataSource
+        name: rhel9
+        namespace: openshift-virtualization-os-images
+      storage:
+        resources: {}
+{{- end }}
+{{- if eq $.Values.windows "true" }}
 ---
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
@@ -144,5 +209,6 @@ spec:
       - dataVolume:
           name: winweb01-{{ $vm_index }}
         name: rootdisk
+{{- end }}
 {{- end }}
 {{- end }}
