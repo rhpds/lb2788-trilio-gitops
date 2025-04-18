@@ -10,7 +10,7 @@ spec:
       elements:
 {{- $userCount := int .Values.user.count }}
 {{- range $index := until $userCount }}
-      - user: {{ $.Values.user.prefix }}{{ add $index 1}}
+      - user: {{ $.Values.user.prefix }}{{ if ne $userCount 1 }}{{ add $index 1 }}{{ end }}
 {{- end }}
   template:
     metadata:
