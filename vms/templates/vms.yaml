@@ -44,7 +44,7 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   name: linux-vm
-  namespace: {{ $.Values.namespace }}-{{ $.Values.username }}
+  namespace: {{ $.Values.vms.namespace }}-{{ $.Values.username }}
   labels:
     app.kubernetes.io/name: linux-vm
   annotations:
@@ -204,7 +204,6 @@ spec:
       networks:
       - name: default
         pod: {}
-      terminationGracePeriodSeconds: 0
       volumes:
       - dataVolume:
           name: winweb01-{{ $vm_index }}
