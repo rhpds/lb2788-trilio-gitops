@@ -6,7 +6,7 @@ username: user1
 common_password: password
 
 user:
-  count: 1
+  count: "1"
   prefix: dr-admin
 
 deployer:
