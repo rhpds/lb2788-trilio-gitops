@@ -12,7 +12,6 @@ datavolumes:
   namespace: default
   imageUrl: "http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt"
   volumes:
-  # - name: database
   # - object_name: demo-database-centos7-20250408.qcow2
   #   volume_name: database
   #   size: 16Gi
