@@ -8,9 +8,11 @@ deployer:
 
 ingressgatway_url_path: https://localhost
 
+namespace: originalvms
+
 vms:
   count: 1
-  namespace: vms
+  namespace: originalvms
   runStrategy: "RerunOnFailure"
   evictionStrategy: "LiveMigrate"
   machineType: q35

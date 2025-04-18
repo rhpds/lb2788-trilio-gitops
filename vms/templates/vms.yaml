@@ -1,9 +1,10 @@
+
 {{- with .Values.vms }}
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: {{ .namespace }}-{{ $.Values.username }}
+  name: {{ .namespace }}
 {{- if .label }}
   labels:
 {{ .label | indent 4 }}
@@ -17,7 +18,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: {{ .namespace }}-{{ $.Values.username }}
+  namespace: {{ .namespace }}
 roleRef:
   kind: ClusterRole
   name: datavolume-cloner
@@ -27,7 +28,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: admin
-  namespace: {{ .namespace }}-{{ $.Values.username }}
+  namespace: {{ .namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -44,7 +45,7 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   name: linux-vm
-  namespace: {{ $.Values.vms.namespace }}-{{ $.Values.username }}
+  namespace: {{ $.Values.vms.namespace }}
   labels:
     app.kubernetes.io/name: linux-vm
   annotations:
@@ -115,7 +116,7 @@ metadata:
     vm.kubevirt.io/template.revision: '1'
     vm.kubevirt.io/template.version: v0.25.0
   name: winweb01
-  namespace: {{ $.Values.vms.namespace }}-{{ $.Values.username }}
+  namespace: {{ $.Values.vms.namespace }}
 spec:
   dataVolumeTemplates:
   - apiVersion: cdi.kubevirt.io/v1beta1
