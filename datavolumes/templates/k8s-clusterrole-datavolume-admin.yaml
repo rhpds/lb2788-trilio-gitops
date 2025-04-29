@@ -10,6 +10,6 @@ subjects:
   namespace: {{ .namespace }}
 roleRef:
   kind: ClusterRole
-  name: datavolume-cloner
+  name: datavolume-admin
   apiGroup: rbac.authorization.k8s.io
 ---
