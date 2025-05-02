@@ -8,10 +8,7 @@ deployer:
 
 ingressgatway_url_path: https://localhost
 
-namespace: originalvms
-
 datavolumes:
-  namespace: default
   imageUrl: "http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt"
   volumes:
   - object_name: demo-database-centos7-20250408.qcow2
