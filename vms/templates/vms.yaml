@@ -1,4 +1,3 @@
-
 {{- with .Values.vms }}
 ---
 apiVersion: v1
@@ -36,7 +35,7 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
-  name: admin
+  name: dr-admin1
 {{- $max_vms := ( add ( int .count ) 1 ) }}
 {{- range $vm_index := untilStep 1 ( int $max_vms ) 1 }}
 {{- if eq $.Values.linux "true" }}
