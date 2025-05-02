@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 username: user1
-common_password: password
+user_password: password
 
 user:
   count: 1

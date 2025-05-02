@@ -26,7 +26,7 @@ spec:
         helm:
           values: |
             username: '{{- "{{" }} user {{- " }}" }}'
-            common_password: {{ .Values.common_password }}
+            user_password: {{ .Values.user_password }}
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
