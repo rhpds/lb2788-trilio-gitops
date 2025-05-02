@@ -35,8 +35,6 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: dr-admin1
-{{- $max_vms := ( add ( int .count ) 1 ) }}
-{{- range $vm_index := untilStep 1 ( int $max_vms ) 1 }}
 {{- if eq $.Values.linux "true" }}
 ---
 apiVersion: kubevirt.io/v1
@@ -120,7 +118,7 @@ spec:
   - apiVersion: cdi.kubevirt.io/v1beta1
     kind: DataVolume
     metadata:
-      name: winweb01-{{ $vm_index }}
+      name: winweb01
     spec:
       source:
         snapshot:
@@ -205,7 +203,6 @@ spec:
         pod: {}
       volumes:
       - dataVolume:
-          name: winweb01-{{ $vm_index }}
+          name: winweb01
         name: rootdisk
-{{- end }}
 {{- end }}
