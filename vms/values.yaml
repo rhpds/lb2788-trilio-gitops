@@ -17,7 +17,7 @@ vms:
   evictionStrategy: "LiveMigrate"
   machineType: q35
 
-linux: "false"
-windows: "true"
+linux: "true"
+windows: "false"
 
-username: user1
+username: dr-admin1
