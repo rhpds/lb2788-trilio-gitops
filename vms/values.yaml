@@ -2,6 +2,8 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+ocp4_workload_virt_roadshow_multi_user_configmap_namespace: openshift-cnv
+
 deployer:
   domain: REPLACEME-OPENSHIFT_DOMAIN
   apiUrl: https://api.cluster.opentlc.com:6443
