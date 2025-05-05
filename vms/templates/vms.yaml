@@ -139,7 +139,7 @@ spec:
       labels:
         env: {{ $.Values.vms.route }}
     spec:
-      terminationGracePeriodSeconds: 0
+      terminationGracePeriodSeconds: 30
       domain:
         clock:
           timer:
