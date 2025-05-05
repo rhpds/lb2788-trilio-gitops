@@ -10,6 +10,8 @@ ingressgatway_url_path: https://localhost
 
 datavolumes:
   imageUrl: "http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt"
+    # IBM: "http://s3.us-east.cloud-object-storage.appdomain.cloud/roadshowocpvirt"
+    # AWS: "https://catalog-item-assets.s3.us-east-2.amazonaws.com/qcow_images"
   volumes:
   - object_name: demo-database-centos7-20250408.qcow2
     volume_name: database
@@ -19,7 +21,7 @@ datavolumes:
     volume_name: winweb01
     size: 90Gi
     volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
-  # - object_name: demo-winweb02-w2k22-20250410.qcow2
-  #   volume_name: winweb02
-  #   size: 90Gi
-  #   volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
+  - object_name: demo-winweb02-w2k22-20250410.qcow2
+    volume_name: winweb02
+    size: 90Gi
+    volumeSnapshotClassName: ocs-external-storagecluster-rbdplugin-snapclass
